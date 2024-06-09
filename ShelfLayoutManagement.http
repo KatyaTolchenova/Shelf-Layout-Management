@@ -1,0 +1,8 @@
+@ShelfLayoutManagement_HostAddress = http://localhost:5089
+
+GET {{ShelfLayoutManagement_HostAddress}}/api/v1/shelves
+Accept: application/json
+
+###
+
+DELETE {{ShelfLayoutManagement_HostAddress}}/shelf/api/v1/shelves/2d146626-731d-494f-abcf-72c617484e13

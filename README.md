@@ -176,4 +176,4 @@
 ### COMMENTS
 - It was planned to implement storing and retreiving data in relational DB (PostgreSQL).
 However, due to lack of time, data management is implemented in structures in memory.
-- For simplicity IoC is not used
+- For simplicity IoC is not used.

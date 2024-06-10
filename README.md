@@ -130,6 +130,7 @@
   ]
 }
 ```
+- PARAMETERS: 
 - RESPONSE: `201 Created`
 
 ### CREATE Cabinet
@@ -138,6 +139,7 @@
 - BODY:
   ```JSON
   ```
+- PARAMETERS: 
 - RESPONSE: `201 Created`
 
 ### CREATE Row
@@ -146,6 +148,7 @@
 - BODY:
   ```JSON
   ```
+- PARAMETERS: 
 - RESPONSE: `201 Created`
 
 ### CREATE Lane
@@ -160,48 +163,56 @@
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### UPDATE Cabinet
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### UPDATE Row
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### UPDATE Lane
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### DELETE Shelf
 - METHOD: `DELETE`
 - PATH: shelves/{shelfId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### DELETE Cabinet
 - METHOD: `DELETE`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### DELETE Row
 - METHOD: `DELETE`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### DELETE Lane
 - METHOD: `DELETE`
 - PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
 - BODY:
+- PARAMETERS: 
 - RESPONSE:
 
 ### COMMENTS

@@ -132,56 +132,79 @@
 ```
 - RESPONSE: `201 Created`
 
+### CREATE Cabinet
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets
+- BODY:
+  ```JSON
+  ```
+- RESPONSE: `201 Created`
+
+### CREATE Row
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- BODY:
+  ```JSON
+  ```
+- RESPONSE: `201 Created`
+
+### CREATE Lane
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes
+- BODY:
+  ```JSON
+  ```
+- RESPONSE: `201 Created`
 
 ### UPDATE Shelf
-- METHOD: 
-- PATH:
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}
 - BODY:
 - RESPONSE:
 
 ### UPDATE Cabinet
-- METHOD: 
-- PATH:
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}
 - BODY:
 - RESPONSE:
 
 ### UPDATE Row
-- METHOD: 
-- PATH:
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
 - BODY:
 - RESPONSE:
 
 ### UPDATE Lane
-- METHOD: 
-- PATH:
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
 - BODY:
 - RESPONSE:
 
 ### DELETE Shelf
-- METHOD: 
-- PATH:
+- METHOD: `DELETE`
+- PATH: shelves/{shelfId}
 - BODY:
 - RESPONSE:
 
 ### DELETE Cabinet
-- METHOD: 
-- PATH:
+- METHOD: `DELETE`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}
 - BODY:
 - RESPONSE:
 
 ### DELETE Row
-- METHOD: 
-- PATH:
+- METHOD: `DELETE`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
 - BODY:
 - RESPONSE:
 
 ### DELETE Lane
-- METHOD: 
-- PATH:
+- METHOD: `DELETE`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
 - BODY:
 - RESPONSE:
 
 ### COMMENTS
 - It was planned to implement storing and retreiving data in relational DB (PostgreSQL).
 However, due to lack of time, data management is implemented in structures in memory.
-- For simplicity IoC is not used.
+- IoC is not used for simplicity.

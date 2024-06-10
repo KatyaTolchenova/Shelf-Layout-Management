@@ -240,5 +240,3 @@
 ### COMMENTS
 - Currently data management is implemented in memory. The plan is to store data in relational DB (PostgreSQL).
 - IoC is not used for simplicity.
-- TODO: Separate services to ShelfService and SkuService
-- TODO: Confirm CRUD operations for Cabinets, Rows, Lanes.

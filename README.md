@@ -9,50 +9,58 @@
 ### GET LIST OF Shelves
 - METHOD: `GET`
 - PATH: localhost:5089/api/v1/shelves
-- BODY:
-- RESPONSE:
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET LIST OF Cabinets
 - METHOD: `GET`
-- PATH:
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET LIST OF Rows
 - METHOD: `GET`
-- PATH: localhost:5089/api/v1/shelves/cabinets/rows
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET LIST OF Lanes
 - METHOD: `GET`
-- PATH: localhost:5089/api/v1/shelves/cabinets/rows/lanes
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET Shelf
 - METHOD: `GET`
-- PATH:
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfd}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET Cabinet
 - METHOD: `GET`
-- PATH:
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET Row
 - METHOD: `GET`
-- PATH:
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 ### GET Lane
 - METHOD: `GET`
-- PATH:
-- BODY:
-- RESPONSE:
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: 200 OK
 
 
 ### CREATE Shelf

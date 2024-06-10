@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ShelfLayoutManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87cfb0557e4ea52a0d605914ad53e1034e6fd662")]
 [assembly: System.Reflection.AssemblyProductAttribute("ShelfLayoutManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ShelfLayoutManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

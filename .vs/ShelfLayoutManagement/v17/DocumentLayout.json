@@ -1,54 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Controllers\\ShelfController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Controllers\\ShelfController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Services\\ShelfService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\ShelfService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ShelfService.cs",
-              "DocumentMoniker": "C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Services\\ShelfService.cs",
-              "RelativeDocumentMoniker": "Services\\ShelfService.cs",
-              "ToolTip": "C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Services\\ShelfService.cs",
-              "RelativeToolTip": "Services\\ShelfService.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAuwGcAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T07:53:43.345Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ShelfController.cs",
-              "DocumentMoniker": "C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Controllers\\ShelfController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ShelfController.cs",
-              "ToolTip": "C:\\Users\\wonde\\source\\repos\\ShelfLayoutManagement\\Controllers\\ShelfController.cs",
-              "RelativeToolTip": "Controllers\\ShelfController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGAAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-08T08:12:41.364Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

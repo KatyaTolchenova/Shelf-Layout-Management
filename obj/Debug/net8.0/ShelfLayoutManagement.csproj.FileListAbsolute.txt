@@ -30,3 +30,4 @@ C:\Users\wonde\source\repos\ShelfLayoutManagement\obj\Debug\net8.0\refint\ShelfL
 C:\Users\wonde\source\repos\ShelfLayoutManagement\obj\Debug\net8.0\ShelfLayoutManagement.pdb
 C:\Users\wonde\source\repos\ShelfLayoutManagement\obj\Debug\net8.0\ShelfLayoutManagement.genruntimeconfig.cache
 C:\Users\wonde\source\repos\ShelfLayoutManagement\obj\Debug\net8.0\ref\ShelfLayoutManagement.dll
+C:\Users\wonde\source\repos\ShelfLayoutManagement\obj\Debug\net8.0\ShelfLayoutManagement.sourcelink.json

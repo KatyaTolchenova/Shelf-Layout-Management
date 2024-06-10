@@ -11,30 +11,30 @@ public class ShelfController : ControllerBase
         return Ok(ShelfService.GetShelves());
     }
 
-    [HttpGet("shelves/cabinets")]
+    [HttpGet("shelves/{shelfId}/cabinets")]
     public ActionResult<List<Cabinet>> GetCabinets()
     {
         return Ok(ShelfService.GetCabinets());
     }
 
-    [HttpGet("shelves/cabinets/rows")]
+    [HttpGet("shelves/{shelfId}/cabinets/{cabinetId}/rows")]
     public ActionResult<List<Row>> GetRows()
     {
         return Ok(ShelfService.GetRows());
     }
 
-    [HttpGet("shelves/cabinets/rows/lanes")]
+    [HttpGet("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes")]
     public ActionResult<List<Lane>> GetLanes()
     {
         return Ok(ShelfService.GetLanes());
     }
 
 
-    [HttpGet("shelves/{id}")]
-    public ActionResult<Shelf> GetShelf(Guid id)
+    [HttpGet("shelves/{shelfd}")]
+    public ActionResult<Shelf> GetShelf(Guid shelfId)
     {
-
-        Shelf shelf = ShelfService.GetShelf(id);
+        
+        Shelf shelf = ShelfService.GetShelf(shelfId);
 
         if (shelf == null)
         {
@@ -44,11 +44,11 @@ public class ShelfController : ControllerBase
         return Ok(shelf);
     }
 
-    [HttpGet("shelves/cabinets/{id}")]
-    public ActionResult<Cabinet> GetCabinet(Guid id)
+    [HttpGet("shelves/{shelfId}/cabinets/{cabinetId}")]
+    public ActionResult<Cabinet> GetCabinet(Guid cabinetId)
     {
 
-        Cabinet cabinet = ShelfService.GetCabinet(id);
+        Cabinet cabinet = ShelfService.GetCabinet(cabinetId);
 
         if (cabinet == null)
         {
@@ -58,11 +58,11 @@ public class ShelfController : ControllerBase
         return Ok(cabinet);
     }
 
-    [HttpGet("shelves/rows/{id}")]
-    public ActionResult<Row> GetRow(Guid id)
+    [HttpGet("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}")]
+    public ActionResult<Row> GetRow(Guid rowId)
     {
 
-        Row row = ShelfService.GetRow(id);
+        Row row = ShelfService.GetRow(rowId);
 
         if (row == null)
         {
@@ -72,10 +72,10 @@ public class ShelfController : ControllerBase
         return Ok(row);
     }
 
-    [HttpGet("shelves/rows/lanes/{id}")]
-    public ActionResult<Lane> GetLane(Guid id)
+    [HttpGet("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}")]
+    public ActionResult<Lane> GetLane(Guid laneId)
     {
-        Lane lane = ShelfService.GetLane(id);
+        Lane lane = ShelfService.GetLane(laneId);
 
         if (lane == null)
         {
@@ -92,75 +92,78 @@ public class ShelfController : ControllerBase
         return Created("", ShelfService.CreateShelf(shelf));
     }
 
-    //[HttpPost("shelves/cabinets")]
-    //public ActionResult<Cabinet> CreateCabinet(Cabinet cabinet)
-    //{
-    //    return Created("", ShelfService.CreateCabinet(cabinet));
-    //}
-
-    //[HttpPost("shelves/cabinets/rows")]
-    //public ActionResult<Row> CreateRow(Row row)
-    //{
-    //    return Created("", ShelfService.CreateRow(row));
-    //}
-
-    //[HttpPost("shelves/cabinets/rows/lanes")]
-    //public ActionResult<Lane> CreateLane(Lane lane)
-    //{
-    //    return Created("", ShelfService.CreateLane(lane));
-    //}
-
-
-    [HttpPut("shelves/{id}")]
-    public ActionResult<Shelf> UpdateShelf(Guid id, Shelf shelf)
+    [HttpPost("shelves/{shelfId}/cabinets")]
+    public ActionResult<Cabinet> CreateCabinet(Cabinet cabinet)
     {
-        return Ok(ShelfService.UpdateShelf(id, shelf));
+        Console.WriteLine($"Attempting to create cabinet with ID: {cabinet.Id}");
+        return Created("", ShelfService.CreateCabinet(cabinet));
     }
 
-    [HttpPut("sshelves/cabinets/{id}")]
-    public ActionResult<Cabinet> UpdateCabinet(Guid id, Cabinet cabinet)
+    [HttpPost("shelves/{shelfId}/cabinets/{cabinetId}/rows")]
+    public ActionResult<Row> CreateRow(Row row)
     {
-        return Ok(ShelfService.UpdateCabinet(id, cabinet));
+        return Created("", ShelfService.CreateRow(row));
     }
 
-    [HttpPut("shelves/cabinets/rows/{id}")]
-    public ActionResult<Row> UpdateRow(Guid id, Row row)
+    [HttpPost("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes")]
+    public ActionResult<Lane> CreateLane(Lane lane)
     {
-        return Ok(ShelfService.UpdateRow(id, row));
+        return Created("", ShelfService.CreateLane(lane));
     }
 
-    [HttpPut("shelves/cabinets/rows/lanes/{id}")]
-    public ActionResult<Lane> UpdateLane(Guid id, Lane lane)
+    
+    [HttpPut("shelves/{shelfId}")]
+    public ActionResult<Shelf> UpdateShelf(Guid shelfId, Shelf shelf)
     {
-        return Ok(ShelfService.UpdateLane(id, lane));
+        return Ok(ShelfService.UpdateShelf(shelfId, shelf));
+    }
+
+    [HttpPut("shelves/{shelfId}/cabinets/{cabinetId}")]
+    public ActionResult<Cabinet> UpdateCabinet(Guid cabinetId, Cabinet cabinet)
+    {
+        return Ok(ShelfService.UpdateCabinet(cabinetId, cabinet));
+    }
+
+    [HttpPut("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}")]
+    public ActionResult<Row> UpdateRow(Guid rowId, Row row)
+    {
+        return Ok(ShelfService.UpdateRow(rowId, row));
+    }
+
+    [HttpPut("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}")]
+    public ActionResult<Lane> UpdateLane(Guid laneId, Lane lane)
+    {
+        return Ok(ShelfService.UpdateLane(laneId, lane));
     }
 
 
-    [HttpDelete("shelves/{id}")]
-    public ActionResult DeleteShelf(Guid id)
+    [HttpDelete("shelves/{shelfId}")]
+    public ActionResult DeleteShelf(Guid shelfId)
     {
-        ShelfService.DeleteShelf(id);
+        ShelfService.DeleteShelf(shelfId);
         return NoContent();
     }
 
-    [HttpDelete("shelves/cabinets/{id}")]
-    public ActionResult DeleteCabinet(Guid id)
+    [HttpDelete("shelves/{shelfId}/cabinets/{cabinetId}")]
+    public ActionResult DeleteCabinet(Guid cabinetId)
     {
-        ShelfService.DeleteCabinet(id);
+        Console.WriteLine($"Attempting to delete cabinet with ID: {cabinetId}");
+        ShelfService.DeleteCabinet(cabinetId);
         return NoContent();
     }
 
-    [HttpDelete("shelves/cabinets/rows/{id}")]
-    public ActionResult DeleteRow(Guid id)
+
+    [HttpDelete("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}")]
+    public ActionResult DeleteRow(Guid rowId)
     {
-        ShelfService.DeleteRow(id);
+        ShelfService.DeleteRow(rowId);
         return NoContent();
     }
 
-    [HttpDelete("shelves/cabinets/rows/lanes/{id}")]
-    public ActionResult DeleteLane(Guid id)
+    [HttpDelete("shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}")]
+    public ActionResult DeleteLane(Guid laneId)
     {
-        ShelfService.DeleteLane(id);
+        ShelfService.DeleteLane(laneId);
         return NoContent();
     }
 

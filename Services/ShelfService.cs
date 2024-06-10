@@ -210,6 +210,7 @@ public static class ShelfService
         return lane;
     }
 
+
     public static LaneInfo AddSku(Guid laneId, int count)
     {
         CheckAddSkuPrecondtions(laneId, count);

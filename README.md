@@ -6,63 +6,6 @@
 
 ## API
 
-### GET LIST OF Shelves
-- METHOD: `GET`
-- PATH: localhost:5089/api/v1/shelves
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET LIST OF Cabinets
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET LIST OF Rows
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET LIST OF Lanes
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET Shelf
-- METHOD: `GET`
-- PATH: shelves/{shelfd}
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET Cabinet
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET Row
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-### GET Lane
-- METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
-- BODY: -
-- PARAMETERS: -
-- RESPONSE: `200 OK`
-
-
 ### CREATE Shelf
 - METHOD: `POST`
 - PATH: localhost:5089/api/v1/shelves
@@ -84,8 +27,8 @@
             },
             {
               "Number": 2,
-              "JanCode": "4902102112464",
-              "Quantity": 15,
+              "JanCode": "4902102112457",
+              "Quantity": 10,
               "PositionX": 10
             }
           ],
@@ -133,59 +76,28 @@
 - PARAMETERS: -
 - RESPONSE: `201 Created`
 
-### CREATE Cabinet
-- METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets
-- BODY:
-  ```JSON
-  ```
-- PARAMETERS: shelfId
-- RESPONSE: `201 Created`
+### READ LIST OF Shelves
+- METHOD: `GET`
+- PATH: localhost:5089/api/v1/shelves
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: `200 OK`
 
-### CREATE Row
-- METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
-- BODY:
-  ```JSON
-  ```
-- PARAMETERS: 
-- RESPONSE: `201 Created`
-
-### CREATE Lane
-- METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes
-- BODY:
-  ```JSON
-  ```
-- PARAMETERS: shelfId, cabinetId, rowsId
-- RESPONSE: `201 Created`
-
+### READ Shelf
+- METHOD: `GET`
+- PATH: shelves/{shelfd}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: `200 OK`
+- 
 ### UPDATE Shelf
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}
 - BODY:
+  ```JSON
+  {}
+  ```
 - PARAMETERS: shelfId
-- RESPONSE: `200 OK`
-
-### UPDATE Cabinet
-- METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}
-- BODY:
-- PARAMETERS: shelfId, cabinetId
-- RESPONSE: `200 OK`
-
-### UPDATE Row
-- METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
-- BODY:
-- PARAMETERS: shelfId, cabinetId, rowsId
-- RESPONSE: `200 OK`
-
-### UPDATE Lane
-- METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
-- BODY:
-- PARAMETERS: shelfId, cabinetId, rowsId, laneId
 - RESPONSE: `200 OK`
 
 ### DELETE Shelf
@@ -194,6 +106,45 @@
 - BODY: -
 - PARAMETERS: shelfId
 - RESPONSE: `204 No Content`
+  
+
+### CREATE Cabinet
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets
+- BODY:
+  ```JSON
+  {
+    "Number": 1
+  }
+  ```
+- PARAMETERS: shelfId
+- RESPONSE: `201 Created`
+
+### READ LIST OF Cabinets
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets
+- BODY: -
+- PARAMETERS: shelfId
+- RESPONSE: `200 OK`
+
+### READ Cabinet
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- BODY: -
+- PARAMETERS: shelfId, cabinetId
+- RESPONSE: `200 OK`
+
+### UPDATE Cabinet
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- BODY:
+  ```JSON
+  {
+    "Number": 3000
+  }
+  ```
+- PARAMETERS: shelfId, cabinetId
+- RESPONSE: `200 OK`
 
 ### DELETE Cabinet
 - METHOD: `DELETE`
@@ -202,19 +153,98 @@
 - PARAMETERS: shelfId, cabinetId
 - RESPONSE: `204 No Content`
 
+
+### CREATE Row
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- BODY:
+  ```JSON
+  {
+    "Number": 2
+  }
+  ```
+- PARAMETERS: shelfId, cabinetId
+- RESPONSE: `201 Created`
+
+### READ LIST OF Rows
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- BODY: -
+- PARAMETERS: shelfId, cabinetId
+- RESPONSE: `200 OK`
+
+### READ Row
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
+- BODY: -
+- PARAMETERS: shelfId, cabinetId, rowId
+- RESPONSE: `200 OK`
+
+### UPDATE Row
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
+- BODY:
+  ```JSON
+  {
+    "Number": 2000
+  }
+  ```
+- PARAMETERS: shelfId, cabinetId, rowId
+- RESPONSE: `200 OK`
+
 ### DELETE Row
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
 - BODY: -
-- PARAMETERS: shelfId, cabinetId, rowsId
+- PARAMETERS: shelfId, cabinetId, rowId
 - RESPONSE: `204 No Content`
+  
+
+### CREATE Lane
+- METHOD: `POST`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
+- BODY:
+  ```JSON
+  {
+    "Number": 4
+  }
+  ```
+- PARAMETERS: shelfId, cabinetId, rowId
+- RESPONSE: `201 Created`
+
+### READ LIST OF Lanes
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: `200 OK`
+
+### READ Lane
+- METHOD: `GET`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
+- BODY: -
+- PARAMETERS: -
+- RESPONSE: `200 OK`
+
+### UPDATE Lane
+- METHOD: `PUT`
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
+- BODY:
+  ```JSON
+  {
+    "Number": 1000
+  }
+  ```
+- PARAMETERS: shelfId, cabinetId, rowId, laneId
+- RESPONSE: `200 OK`
 
 ### DELETE Lane
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowsId}/lanes/{laneId}
+- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
 - BODY: -
-- PARAMETERS: shelfId, cabinetId, rowsId, laneId
+- PARAMETERS: shelfId, cabinetId, rowId, laneId
 - RESPONSE: `204 No Content`
+
 
 ### ADD Sku
 - METHOD: `POST`

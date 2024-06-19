@@ -2,9 +2,6 @@
 public static class ShelfService
 {
     private static Dictionary<Guid, Shelf> shelves = new Dictionary<Guid, Shelf>();
-    private static Dictionary<Guid, Cabinet> cabinets = new Dictionary<Guid, Cabinet>();
-    private static Dictionary<Guid, Row> rows = new Dictionary<Guid, Row>();
-    private static Dictionary<Guid, Lane> lanes = new Dictionary<Guid, Lane>();
     private static Dictionary<Guid, LaneInfo> laneInfos = new Dictionary<Guid, LaneInfo>();
 
     public static List<Shelf> GetShelves()
@@ -12,19 +9,39 @@ public static class ShelfService
         return new List<Shelf>(shelves.Values);
     }
 
-    public static List<Cabinet> GetCabinets()
+    public static List<Cabinet> GetCabinets(Guid shelfId)
     {
-        return new List<Cabinet>(cabinets.Values);
+        Shelf shelf = GetShelf(shelfId);
+        if (shelf == null)
+        {
+            throw new Exception("Shelf with id " + shelfId + " not found");
+        }
+        
+        return new List<Cabinet>(shelf.Cabinets);
     }
 
-    public static List<Row> GetRows()
+    public static List<Row> GetRows(Guid shelfId, Guid cabinetId)
     {
-        return new List<Row>(rows.Values);
+        Cabinet cabinet = GetCabinet(shelfId, cabinetId);
+
+        if (cabinet == null)
+        {
+            throw new Exception("Cabinet with id " + cabinetId + " not found");
+        }
+
+        return new List<Row>(cabinet.Rows);
     }
 
-    public static List<Lane> GetLanes()
+    public static List<Lane> GetLanes(Guid shelfId, Guid cabinetId, Guid rowId)
     {
-        return new List<Lane>(lanes.Values);
+        Row row = GetRow(shelfId, cabinetId, rowId);
+
+        if (row == null)
+        {
+            throw new Exception("Row with id " + rowId + " not found");
+        }
+     
+        return new List<Lane>(row.Lanes);
     }
 
     public static Shelf GetShelf(Guid id)
@@ -39,143 +56,172 @@ public static class ShelfService
         }
     }
 
-    public static Cabinet GetCabinet(Guid id)
+    public static Cabinet GetCabinet(Guid shelfId, Guid id)
     {
-        if (cabinets.ContainsKey(id))
+        Shelf shelf = GetShelf(shelfId);
+        if (shelf == null)
         {
-            return cabinets[id]; 
+            throw new Exception("Shelf with id " + shelfId + " not found");
         }
-        else
+
+        foreach (var cabinet in shelf.Cabinets)
         {
-            return null;
+            if (cabinet.Id == id)
+            { 
+                return cabinet;
+            }
         }
+        return null;
     }
 
-    public static Row GetRow(Guid id)
+    public static Row GetRow(Guid shelfId, Guid cabinetId, Guid id)
     {
-        if (rows.ContainsKey(id))
+        Cabinet cabinet = GetCabinet(shelfId, cabinetId);
+
+        if (cabinet == null)
         {
-            return rows[id];
+            throw new Exception("Cabinet with id " + cabinetId + " not found");
         }
-        else 
-        { 
-            return null; 
+
+        foreach (var row in cabinet.Rows)
+        {
+            if (row.Id == id)
+            {
+                return row;
+            }
         }
+        return null;
     }
 
-    public static Lane GetLane(Guid id)
+    public static Lane GetLane(Guid shelfId, Guid cabinetId, Guid rowId, Guid id)
     {
-        if (lanes.ContainsKey(id))
+        Row row = GetRow(shelfId, cabinetId, rowId);
+        if (row == null)
         {
-            return lanes[id];
+            throw new Exception("Row with id " + rowId + " not found");
         }
-        else
+
+        foreach (var lane in row.Lanes)
         {
-            return null;
+            if (lane.Id == id)
+            {
+                return lane;
+            }
         }
+        return null;
     }
 
     public static Shelf CreateShelf(Shelf shelf)
     {
-        Console.WriteLine("===== create shelf");
         shelves.Add(shelf.Id, shelf);
-
-        foreach (var cabinet in shelf.Cabinets)
-        {
-            CreateCabinet(cabinet);
-        }
-        dump();
         return shelf;
-
     }
 
-    public static Cabinet CreateCabinet(Cabinet cabinet)
+    public static Cabinet CreateCabinet(Guid shelfId, Cabinet cabinet)
     {
-        Console.WriteLine("===== create cabinet");
-        cabinets.Add(cabinet.Id, cabinet);
-        foreach (var row in cabinet.Rows)
+        Shelf shelf = GetShelf(shelfId);
+        if (shelf == null)
         {
-            CreateRow(row);
+            throw new Exception("Shelf with id " + shelfId + " not found");
         }
-        dump();
+
+        shelf.Cabinets.Add(cabinet);
         return cabinet;
     }
 
-    public static Row CreateRow(Row row)
+    public static Row CreateRow(Guid shelfId, Guid cabinetId, Row row)
     {
-        Console.WriteLine("===== create row");
-        rows.Add(row.Id, row);
-        foreach (var lane in row.Lanes)
+        Cabinet cabinet = GetCabinet(shelfId, cabinetId);
+        if (cabinet == null)
         {
-            CreateLane(lane);
+            throw new Exception("Cabinet with id " + cabinetId + " not found");
         }
-        dump();
+
+        cabinet.Rows.Add(row);
         return row;
     }
 
-    public static Lane CreateLane(Lane lane)
+    public static Lane CreateLane(Guid shelfId, Guid cabinetId, Guid rowId, Lane lane)
     {
-        Console.WriteLine("===== create lane");
-        lanes.Add(lane.Id, lane);
-        dump();
+        Row row = GetRow(shelfId, cabinetId, rowId);
+        if (row == null)
+        {
+            throw new Exception("Row with id " + rowId + " not found");
+        }
+
+        row.Lanes.Add(lane);
         return lane;
     }
 
     public static void DeleteShelf(Guid id)
     {
-        Console.WriteLine("delete");
-        if(shelves.ContainsKey(id)) {
-        Shelf shelf = shelves[id];
+        if(shelves.ContainsKey(id)) 
+        {
             shelves.Remove(id);
-            foreach (var cabinet in shelf.Cabinets)
-            {
-                DeleteCabinet(cabinet.Id);
-            }
         }
-        dump();
     }
 
-    public static void DeleteCabinet(Guid id)
+    public static void DeleteCabinet(Guid shelfId, Guid id)
     {
-        Console.WriteLine("delete cabinet");
-        if (cabinets.ContainsKey(id))
+        Shelf shelf = GetShelf(shelfId);
+        if (shelf == null)
         {
-            Cabinet cabinet = cabinets[id];
-            cabinets.Remove(id);
+            throw new Exception("Shelf with id " + shelfId + " not found");
+        }
 
-            foreach (var row in cabinet.Rows)
+        Cabinet cabinet = null;
+
+        foreach (var cabinet0 in shelf.Cabinets)
+        {
+            if (cabinet0.Id == id)
             {
-                DeleteRow(row.Id);
+                cabinet = cabinet0;
+                break;
             }
         }
-        dump();
+        shelf.Cabinets.Remove(cabinet);
     }
 
-    public static void DeleteRow(Guid id)
+    public static void DeleteRow(Guid shelfId, Guid cabinetId, Guid id)
     {
-        Console.WriteLine("delete row");
-        if (rows.ContainsKey(id))
+        Cabinet cabinet = GetCabinet(shelfId, cabinetId);
+        if (cabinet == null)
         {
-            Row row = rows[id];
-            rows.Remove(id);
+            throw new Exception("Cabinet with id " + cabinetId + " not found");
+        }
 
-            foreach (var lane in row.Lanes)
+        Row row = null;
+
+        foreach (var row0 in cabinet.Rows)
+        {
+            if (row0.Id == id)
             {
-                lanes.Remove(lane.Id);
+                row = row0;
+                break;
             }
         }
-        dump();
+        cabinet.Rows.Remove(row);
     }
 
-    public static void DeleteLane(Guid id)
+    public static void DeleteLane(Guid shelfId, Guid cabinetId, Guid rowId, Guid id)
     {
-        Console.WriteLine("delete lane");
-        if (lanes.ContainsKey(id))
+        Row row = GetRow(shelfId, cabinetId, rowId);
+        if (row == null)
         {
-            Lane lane = lanes[id];
-            lanes.Remove(lane.Id);
+            throw new Exception("Row with id " + rowId + " not found");
         }
-        dump();
+
+        Lane lane = null;
+
+        foreach (var lane0 in row.Lanes)
+        {
+            if (lane0.Id == id)
+            {
+                lane = lane0;
+                break;
+            }
+        }
+        row.Lanes.Remove(lane);
     }
 
     public static Shelf UpdateShelf(Guid id, Shelf shelf)
@@ -186,46 +232,46 @@ public static class ShelfService
         return shelf;
     }
 
-    public static Cabinet UpdateCabinet(Guid id, Cabinet cabinet)
+    public static Cabinet UpdateCabinet(Guid shelfId, Guid id, Cabinet cabinet)
     {
         cabinet.Id = id;
-        DeleteCabinet(id);
-        CreateCabinet(cabinet);
+        DeleteCabinet(shelfId, id);
+        CreateCabinet(shelfId, cabinet);
         return cabinet;
     }
 
-    public static Row UpdateRow(Guid id, Row row)
+    public static Row UpdateRow(Guid shelfId, Guid cabinetId, Guid id, Row row)
     {
         row.Id = id;
-        DeleteRow(id);
-        CreateRow(row);
+        DeleteRow(shelfId, cabinetId, id);
+        CreateRow(shelfId, cabinetId, row);
         return row;
     }
 
-    public static Lane UpdateLane(Guid id, Lane lane)
+    public static Lane UpdateLane(Guid shelfId, Guid cabinetId, Guid rowId, Guid id, Lane lane)
     {
         lane.Id = id;
-        DeleteLane(id);
-        CreateLane(lane);
+        DeleteLane(shelfId, cabinetId, rowId, id);
+        CreateLane(shelfId, cabinetId, rowId, lane);
         return lane;
     }
 
 
-    public static LaneInfo AddSku(Guid laneId, int count)
+    public static LaneInfo AddSku(Guid shelfId, Guid cabinetId, Guid rowId, Guid laneId, int count)
     {
-        CheckAddSkuPrecondtions(laneId, count);
+        CheckAddSkuPrecondtions(shelfId, cabinetId, rowId, laneId, count);
 
         LaneInfo laneInfo = laneInfos[laneId];
 
         laneInfo.Count += count;
-
+        
         return laneInfo;
     }
 
-    public static LaneInfo RemoveSku(Guid laneId, int count)
+    public static LaneInfo RemoveSku(Guid shelfId, Guid cabinetId, Guid rowId, Guid laneId, int count)
     {
 
-        CheckRemoveSkuPrecondtions(laneId, count);
+        CheckRemoveSkuPrecondtions(shelfId, cabinetId, rowId, laneId, count);
 
         LaneInfo laneInfo = laneInfos[laneId];
 
@@ -234,9 +280,26 @@ public static class ShelfService
         return laneInfo;
     }
 
-    private static void CheckAddSkuPrecondtions(Guid laneId, int count) {
+    public static void MoveSku(Guid sourceShelfId, Guid sourceCabinetId, Guid sourceRowId, Guid sourceLaneId, Guid targetShelfId, Guid targetCabinetId, Guid targetRowId, Guid targetLaneId, int count)
+    {
+        CheckMoveSkuPrecondtions(sourceShelfId, sourceCabinetId, sourceRowId, sourceLaneId, targetShelfId, targetCabinetId, targetRowId, targetLaneId, count);
 
-        Lane lane = GetLane(laneId);
+        LaneInfo sourceLaneInfo = laneInfos[sourceLaneId];
+
+        sourceLaneInfo.Count -= count;
+
+        LaneInfo targetLaneInfo = laneInfos[targetLaneId];
+
+        targetLaneInfo.Count += count;
+
+        Console.WriteLine("source lane -> " + sourceLaneInfo.Count);
+        Console.WriteLine("target lane -> " + targetLaneInfo.Count);
+    }
+
+    private static void CheckAddSkuPrecondtions(Guid shelfId, Guid cabinetId, Guid rowId, Guid laneId, int count)
+    {
+
+        Lane lane = GetLane(shelfId, cabinetId, rowId, laneId);
 
         if (lane == null)
         {
@@ -263,9 +326,9 @@ public static class ShelfService
         }
     }
 
-    private static void CheckRemoveSkuPrecondtions(Guid laneId, int count)
+    private static void CheckRemoveSkuPrecondtions(Guid shelfId, Guid cabinetId, Guid rowId, Guid laneId, int count)
     {
-        Lane lane = GetLane(laneId);
+        Lane lane = GetLane(shelfId, cabinetId, rowId, laneId);
 
         if (lane == null)
         {
@@ -292,13 +355,13 @@ public static class ShelfService
         }
     }
 
-    private static void CheckMoveSkuPrecondtions(Guid sourceLaneId, Guid targetLaneId, int count)
+    private static void CheckMoveSkuPrecondtions(Guid sourceShelfId, Guid sourceCabinetId, Guid sourceRowId, Guid sourceLaneId, Guid targetShelfId, Guid targetCabinetId, Guid targetRowId, Guid targetLaneId, int count)
     {
-        CheckRemoveSkuPrecondtions(sourceLaneId, count);
-        CheckAddSkuPrecondtions(targetLaneId, count);
+        CheckRemoveSkuPrecondtions(sourceShelfId, sourceCabinetId, sourceRowId, sourceLaneId, count);
+        CheckAddSkuPrecondtions(targetShelfId, targetCabinetId, targetRowId, targetLaneId, count);
 
-        Lane sourceLane = lanes[sourceLaneId];
-        Lane targetLane = lanes[targetLaneId];
+        Lane sourceLane = GetLane(sourceShelfId, sourceCabinetId, sourceRowId, sourceLaneId);
+        Lane targetLane = GetLane(targetShelfId, targetCabinetId, targetRowId, targetLaneId);
 
         if (sourceLane.JanCode != targetLane.JanCode)
         {
@@ -306,28 +369,4 @@ public static class ShelfService
         }
     }
 
-    public static void MoveSku(Guid sourceLaneId, Guid targetLaneId, int count)
-    {
-        CheckMoveSkuPrecondtions(sourceLaneId, targetLaneId, count);
-
-        LaneInfo sourceLaneInfo = laneInfos[sourceLaneId];
-
-        sourceLaneInfo.Count -= count;
-
-        LaneInfo targetLaneInfo = laneInfos[targetLaneId];
-
-        targetLaneInfo.Count += count;
-
-        Console.WriteLine("source lane -> " + sourceLaneInfo.Count);
-        Console.WriteLine("target lane -> " + targetLaneInfo.Count);
-    }
-
-    private static void dump()
-    {
-        Console.WriteLine("shelves -> " + shelves.Count);
-        Console.WriteLine("cabients -> " + cabinets.Count);
-        Console.WriteLine("rows -> " + rows.Count);
-        Console.WriteLine("lanes -> " + lanes.Count);
-
-    }
 }

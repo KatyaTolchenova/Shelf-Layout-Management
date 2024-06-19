@@ -89,7 +89,7 @@
 - BODY: -
 - PARAMETERS: shelfd
 - RESPONSE: `200 OK`
-- 
+
 ### UPDATE Shelf
 - METHOD: `PUT`
 - PATH: shelves/{shelfId}
@@ -249,24 +249,23 @@
 ### ADD Sku
 - METHOD: `POST`
 - PATH: skus/add
-- BODY: laneId, count
+- BODY: shelfId, cabinetId, rowId, laneId, count
 - PARAMETERS: -
 - RESPONSE: `200 OK`
 
 ### REMOVE Sku
 - METHOD: `POST`
 - PATH: skus/remove
-- BODY: laneId, count
+- BODY: shelfId, cabinetId, rowId, laneId, count
 - PARAMETERS: -
 - RESPONSE: `200 OK`
   
 ### MOVE Sku
 - METHOD: `POST`
 - PATH: skus/move
-- BODY: sourceLaneId, targetLaneId, count
+- BODY: sourceShelfId, sourceCabinetId, sourceRowId, sourceLaneId, targetShelfId, targetCabinetId, targetRowId, targetLaneId, count
 - PARAMETERS: -
 - RESPONSE: `204 No Content`
 
 ### COMMENTS
 - Currently data management is implemented in memory. The plan is to store data in relational DB (PostgreSQL).
-- IoC is not used for simplicity.

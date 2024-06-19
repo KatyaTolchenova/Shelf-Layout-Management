@@ -8,7 +8,7 @@
 
 ### CREATE Shelf
 - METHOD: `POST`
-- PATH: localhost:5089/api/v1/shelves
+- PATH: api/v1/shelves
 - BODY: 
 ```JSON
 {
@@ -78,21 +78,21 @@
 
 ### READ LIST OF Shelves
 - METHOD: `GET`
-- PATH: localhost:5089/api/v1/shelves
+- PATH: api/v1/shelves
 - BODY: -
 - PARAMETERS: -
 - RESPONSE: `200 OK`
 
 ### READ Shelf
 - METHOD: `GET`
-- PATH: shelves/{shelfd}
+- PATH: api/v1/shelves/{shelfd}
 - BODY: -
-- PARAMETERS: -
+- PARAMETERS: shelfd
 - RESPONSE: `200 OK`
 - 
 ### UPDATE Shelf
 - METHOD: `PUT`
-- PATH: shelves/{shelfId}
+- PATH: api/v1/shelves/{shelfId}
 - BODY:
   ```JSON
   {}
@@ -102,7 +102,7 @@
 
 ### DELETE Shelf
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}
+- PATH: api/v1/shelves/{shelfId}
 - BODY: -
 - PARAMETERS: shelfId
 - RESPONSE: `204 No Content`
@@ -110,7 +110,7 @@
 
 ### CREATE Cabinet
 - METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets
+- PATH: api/v1/shelves/{shelfId}/cabinets
 - BODY:
   ```JSON
   {
@@ -122,21 +122,21 @@
 
 ### READ LIST OF Cabinets
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets
+- PATH: api/v1/shelves/{shelfId}/cabinets
 - BODY: -
 - PARAMETERS: shelfId
 - RESPONSE: `200 OK`
 
 ### READ Cabinet
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}
 - BODY: -
 - PARAMETERS: shelfId, cabinetId
 - RESPONSE: `200 OK`
 
 ### UPDATE Cabinet
 - METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}
 - BODY:
   ```JSON
   {
@@ -148,7 +148,7 @@
 
 ### DELETE Cabinet
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}
 - BODY: -
 - PARAMETERS: shelfId, cabinetId
 - RESPONSE: `204 No Content`
@@ -156,7 +156,7 @@
 
 ### CREATE Row
 - METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows
 - BODY:
   ```JSON
   {
@@ -168,21 +168,21 @@
 
 ### READ LIST OF Rows
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows
 - BODY: -
 - PARAMETERS: shelfId, cabinetId
 - RESPONSE: `200 OK`
 
 ### READ Row
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
 - BODY: -
 - PARAMETERS: shelfId, cabinetId, rowId
 - RESPONSE: `200 OK`
 
 ### UPDATE Row
 - METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
 - BODY:
   ```JSON
   {
@@ -194,7 +194,7 @@
 
 ### DELETE Row
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}
 - BODY: -
 - PARAMETERS: shelfId, cabinetId, rowId
 - RESPONSE: `204 No Content`
@@ -202,7 +202,7 @@
 
 ### CREATE Lane
 - METHOD: `POST`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
 - BODY:
   ```JSON
   {
@@ -214,21 +214,21 @@
 
 ### READ LIST OF Lanes
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes
 - BODY: -
 - PARAMETERS: -
 - RESPONSE: `200 OK`
 
 ### READ Lane
 - METHOD: `GET`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
 - BODY: -
 - PARAMETERS: -
 - RESPONSE: `200 OK`
 
 ### UPDATE Lane
 - METHOD: `PUT`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
 - BODY:
   ```JSON
   {
@@ -240,7 +240,7 @@
 
 ### DELETE Lane
 - METHOD: `DELETE`
-- PATH: shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
+- PATH: api/v1/shelves/{shelfId}/cabinets/{cabinetId}/rows/{rowId}/lanes/{laneId}
 - BODY: -
 - PARAMETERS: shelfId, cabinetId, rowId, laneId
 - RESPONSE: `204 No Content`
@@ -248,21 +248,21 @@
 
 ### ADD Sku
 - METHOD: `POST`
-- PATH: skus/add
+- PATH: api/v1/skus/add
 - BODY: laneId, count
 - PARAMETERS: -
 - RESPONSE: `200 OK`
 
 ### REMOVE Sku
 - METHOD: `POST`
-- PATH: skus/remove
+- PATH: api/v1/skus/remove
 - BODY: laneId, count
 - PARAMETERS: -
 - RESPONSE: `200 OK`
   
 ### MOVE Sku
 - METHOD: `POST`
-- PATH: skus/move
+- PATH: api/v1/skus/move
 - BODY: sourceLaneId, targetLaneId, count
 - PARAMETERS: -
 - RESPONSE: `204 No Content`
